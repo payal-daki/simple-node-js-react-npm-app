@@ -18,4 +18,4 @@ artifacts:
 post_build:
   commands:
     - echo Uploading build folder to S3...
-    - aws s3 cp ./build/ s3://deploymentbuid/npm/build/ --recursive  # Upload to S3
+    - aws s3 cp ./build/ s3://deploymentbuild/npm/build/ --recursive  # Upload to S3
