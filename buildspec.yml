@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm install --legacy-peer-deps
+
+  build:
+    commands:
+      - npm run build 
+
+artifacts:
+  files:
+    - '**/*'  # Include all files in the build output
+  base-directory: build  # Assuming build output is in the 'build' directory
+  discard-paths: yes  # To avoid storing the folder structure
+
+post_build:
+  commands:
+    - echo Uploading build folder to S3...
+    - aws s3 cp ./build/ s3://my-app-build-bucket/build/ --recursive  # Upload to S3
